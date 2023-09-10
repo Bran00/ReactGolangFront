@@ -25,9 +25,10 @@ export function Home() {
 
   return (
     <div className={styles.home}>
-      <h1 className={styles.titulo}>Vagas Disponíveis</h1>
-      <a href="/new">Adicione uma vaga</a>
-
+      <div className={styles.header}>
+        <h1 className={styles.titulo}>Vagas Disponíveis</h1>
+        <a href="/new">Adicione uma vaga</a>
+      </div>
       {isLoading ? (
         <p className={styles.carregando}>Carregando...</p>
       ) : (
