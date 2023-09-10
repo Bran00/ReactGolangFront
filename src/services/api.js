@@ -1,7 +1,5 @@
 import axios from "axios"
 
-const api = axios.create({
-  baseURL: "https://testereactgolang.onrender.com/",
+export const apiService = axios.create({
+  baseURL: "https://testereactgolang.onrender.com/api/v1", // A URL do seu servidor
 })
-
-export default api
