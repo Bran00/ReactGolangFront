@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react"
+import { useEffect, useState } from "react"
 import { apiService } from "../../services/api"
 import VagaCard from "../../components/Card/cardJob"
 import styles from "./Home.module.css"
