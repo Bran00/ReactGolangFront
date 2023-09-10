@@ -1,34 +1,42 @@
 import React, { useEffect, useState } from "react"
+import { apiService } from "../../services/api"
+import VagaCard from "../../components/Card/cardJob"
+import styles from "./Home.module.css"
 
 export function Home() {
-  const [vagas, setVagas] = useState([]) 
+  const [vagas, setVagas] = useState([])
+  const [isLoading, setIsLoading] = useState(true)
 
   useEffect(() => {
     async function fetchData() {
       try {
-        const response = await api.get("/vagas") // Use os endpoints da sua API aqui
-        setVagas(response.data)
+        const response = await apiService.get("/openings")
+        const data = response.data.Data // Acesso aos dados corretamente
+
+        setVagas(data)
+        setIsLoading(false)
       } catch (error) {
-        console.error(error)
+        console.error("Erro ao buscar vagas:", error)
       }
     }
+
     fetchData()
   }, [])
 
   return (
-    <div className="home">
-      <h1>Vagas disponíveis</h1>
-      <div className="grid">
-        {vagas.map((vaga) => (
-          <div key={vaga.id} className="grid-item">
-            {/* Aqui você renderiza cada card com base nos dados da vaga */}
-            <h3>{vaga.titulo}</h3>
-            <p>{vaga.empresa}</p>
-            <p>{vaga.localizacao}</p>
-            {/* Adicione mais informações conforme necessário */}
-          </div>
-        ))}
-      </div>
+    <div className={styles.home}>
+      <h1 className={styles.titulo}>Vagas Disponíveis</h1>
+      <a href="/new">Adicione uma vaga</a>
+
+      {isLoading ? (
+        <p className={styles.carregando}>Carregando...</p>
+      ) : (
+        <div className={isLoading ? styles.hidden : styles.grid}>
+          {vagas.map((vaga) => (
+            <VagaCard key={vaga._id} vaga={vaga} />
+          ))}
+        </div>
+      )}
     </div>
   )
 }
