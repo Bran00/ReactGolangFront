@@ -2,7 +2,6 @@ import PropTypes from "prop-types"
 import styles from './CardJob.module.css'
 
 const VagaCard = ({ vaga }) => {
-  // ... Seu código atual ...
 
   return (
     <div className={styles.vagaCard}>

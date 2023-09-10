@@ -1,0 +1,16 @@
+{
+  "routes": [
+    {
+      "src": "/api/.*",
+      "dest": "api/index.js"
+    },
+    {
+      "src": "/new",
+      "dest": "index.html"
+    },
+    {
+      "src": "/.*",
+      "dest": "index.html"
+    }
+  ]
+}
